@@ -1,7 +1,7 @@
 <?php
-$greeting = "Добрый день, ";
-$greeting .= (isset($_GET['role']) && $_GET['role'] == "admin") ? "админ" : "";
-$greeting .= isset($_GET['name']) ? $_GET['name'] :'';
+$greeting = "Добрый день,";
+$greeting .= (isset($_GET['role']) && $_GET['role'] == "admin") ? " админ" : "";
+$greeting .= isset($_GET['name']) ? " " . $_GET['name'] :'';
 echo htmlspecialchars($greeting, ENT_QUOTES,"UTF-8");
 echo "<br/>";
 echo "Метод: " . $_SERVER['REQUEST_METHOD'];
