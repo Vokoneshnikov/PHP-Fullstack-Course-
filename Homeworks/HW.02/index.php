@@ -27,10 +27,10 @@ $sortedArray = sorted($filteredArray, $sortType, $sortDirection);
 $pagedArray = paginate($sortedArray, $page, $perPage);
 
 
-echo 'Страница номер ' . $page, '<br><br>';
+echo '<h1>Страница номер ' . $page, '</h1>', '<br><br>';
 
 foreach ($pagedArray as $product) {
-    echo $product['name'] . ' - ', $product['price'], 'р ', '<br/>';
+    echo '<p>'. $product['name'], ' - ', $product['price'], 'р</p>', '<br/>';
 }
 
 function filter(array $arr, float $minimalPrice, float $maximalPrice, string $query): array {
@@ -39,19 +39,19 @@ function filter(array $arr, float $minimalPrice, float $maximalPrice, string $qu
     $result = [];
     foreach ($arr as $product) {
 
-    if ($product['price'] < $minimalPrice || $product['price'] > $maximalPrice) {
-        continue;
-    }
-    if (str_contains(strtolower($product['name']), $query)) {
-        $result[] = $product;
-        continue;
-    }
-    foreach ($product['tags'] as $tag) {
-        if (str_contains(strtolower($tag), $query)) {
-            $result[] = $product;  
-            break;
+        if ($product['price'] < $minimalPrice || $product['price'] > $maximalPrice) {
+            continue;
         }
-    }
+        if (str_contains(strtolower($product['name']), $query)) {
+            $result[] = $product;
+            continue;
+        }
+        foreach ($product['tags'] as $tag) {
+            if (str_contains(strtolower($tag), $query)) {
+                $result[] = $product;  
+                break;
+            }
+        }
     }
     return $result;
 }
