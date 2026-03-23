@@ -27,6 +27,8 @@
         <h1><?= $title ?></h1>
         
         <form method="POST" action="<?= $action ?>">
+            <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>"> 
+            <input type="hidden" name="id" value="<?= $food['id'] ?>">
             <input type="hidden" name="id" value="<?= $food['id'] ?>">
             
             <div class="form-group">

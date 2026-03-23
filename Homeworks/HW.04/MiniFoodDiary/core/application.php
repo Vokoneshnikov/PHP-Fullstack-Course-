@@ -11,15 +11,14 @@ class Application {
     
     public function addMiddleware($middleware) {
         $this->middlewares[] = $middleware;
-        return;
     }
     
     public function run() {
         $request = new Request();
         
         // Создаем цепочку middleware
-        $handler = function(&$request) {
-            $this->router->run();
+        $handler = function($req) {
+            $this->router->run($req);
             return null;
         };
         

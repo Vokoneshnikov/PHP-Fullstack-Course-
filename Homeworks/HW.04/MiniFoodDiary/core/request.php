@@ -1,11 +1,11 @@
 <?php
 
 class Request {
-    private $method;
-    private $path;
-    private $get;
-    private $post;
-    private $session;
+    public $method;
+    public $path;
+    public $get;
+    public $post;
+    public $session;
     private $attributes = [];
 
     public function __construct() {
