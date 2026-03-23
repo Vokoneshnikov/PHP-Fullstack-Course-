@@ -19,6 +19,7 @@ class Router {
             $route = $this->routes[$httpMethod][$path];
             $controller = new $route['controller']();
             $method = $route['method'];
+            
             $controller->$method();
         } else {
             http_response_code(404);

@@ -37,5 +37,28 @@ abstract class BaseController {
         }
         return isset($_GET[$key]) ? trim($_GET[$key]) : null;
     }
+
+
+
+
+
+
+
+
+    //ГРЯЗЬ ОТ НЕЙРОНКИ
+
+    // // Для работы с CSRF
+    // protected function getCsrfToken() {
+    //     return $this->request->session['csrf_token'] ?? null;
+    // }
+    
+    // // Для работы с Flash
+    // protected function getFlash() {
+    //     return $this->request->flash ?? null;
+    // }
+    
+    // protected function setFlash($type, $message) {
+    //     $this->request->newFlash = ['type' => $type, 'message' => $message];
+    // }
 }
 ?>
