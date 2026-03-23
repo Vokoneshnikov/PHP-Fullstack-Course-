@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Food2",
+        "description": "opisanie123",
+        "fats": 5,
+        "proteins": 5,
+        "carbohydrates": 0
+    },
+    {
+        "id": 2,
+        "title": "23456789o",
+        "description": "1234567",
+        "fats": 11,
+        "proteins": 1,
+        "carbohydrates": 0
+    },
+    {
+        "id": 3,
+        "title": "11",
+        "description": "11",
+        "fats": 1,
+        "proteins": 1,
+        "carbohydrates": 5
+    },
+    {
+        "id": 4,
+        "title": "dscv",
+        "description": "1234rd",
+        "fats": 6,
+        "proteins": 5,
+        "carbohydrates": 10
+    }
+]

@@ -1,21 +1,4 @@
 <?php
-$productsFile = __DIR__ . '/products.json';
-
-function loadProducts($file) {
-    if (!file_exists($file)) {
-        $defaultProducts = [];
-        file_put_contents($file, json_encode($defaultProducts, JSON_PRETTY_PRINT));
-        return $defaultProducts;
-    }
-    return json_decode(file_get_contents($file), true);
-}
-
-function saveProducts($file, $products) {
-    file_put_contents($file, json_encode($products, JSON_PRETTY_PRINT));
-}
-
-$products = loadProducts($productsFile);
-
 $GetRoutes = [
     '/' => function() {
         echo '<h1>Главная страница</h1>';
@@ -95,6 +78,8 @@ $PostRoutes = [
 ];
 
 $HttpMethod = $_SERVER['REQUEST_METHOD'];
+$productsFile = __DIR__ . '/products.json';
+$products = loadProducts($productsFile);
 
 Route($HttpMethod, $GetRoutes, $PostRoutes);
 
@@ -124,5 +109,17 @@ function RenderPageNotFoundError() {
     echo '<h1>404 Error</h1>';
     echo '<br/>';
     echo '<h4>Page not found</h4>';
+}
+function loadProducts($file) {
+    if (!file_exists($file)) {
+        $defaultProducts = [];
+        file_put_contents($file, json_encode($defaultProducts, JSON_PRETTY_PRINT));
+        return $defaultProducts;
+    }
+    return json_decode(file_get_contents($file), true);
+}
+
+function saveProducts($file, $products) {
+    file_put_contents($file, json_encode($products, JSON_PRETTY_PRINT));
 }
 ?>
