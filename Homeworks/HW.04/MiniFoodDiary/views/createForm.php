@@ -24,9 +24,10 @@
 </head>
 <body>
     <div class="container">
-        <h1><?= $title ?></h1>
-        
+        <h1><?= $title ?></h1>    
         <form method="POST" action="<?= $action ?>">
+            <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+            
             <div class="form-group">
                 <label for="title">Название блюда *</label>
                 <input type="text" id="title" name="title" 

@@ -1,13 +1,23 @@
 <?php
-
-
 abstract class BaseController {
+    protected $request;
+    
+    public function setRequest($request) {
+        $this->request = $request;
+    }
+    
     abstract public function index();
-
+    
     protected function render($view, $data = []) {
-        // Превращаем массив в переменные
-        extract($data);
-        
+         error_log("=== render ===");
+        error_log("View: " . $view);
+        error_log("Data keys: " . implode(', ', array_keys($data)));
+
+
+        extract($data, EXTR_OVERWRITE);
+
+        error_log("csrfToken after extract: " . ($csrfToken ?? 'NULL'));
+
         $viewFile = __DIR__ . '/../views/' . $view . '.php';
         
         if (file_exists($viewFile)) {
@@ -16,26 +26,41 @@ abstract class BaseController {
             echo "View not found: $view";
         }
     }
-
+    
     protected function redirect($url) {
         header("Location: $url");
         exit;
     }
-
-    // Получение данных из POST
+    
     protected function getFromPost($key = null) {
         if ($key === null) {
-            return $_POST;
+            return $this->request->post;
         }
-        return isset($_POST[$key]) ? trim($_POST[$key]) : null;
+        return $this->request->post[$key] ?? null;
     }
     
-    // Получение данных из GET
     protected function getFromGet($key = null) {
         if ($key === null) {
-            return $_GET;
+            return $this->request->get;
         }
-        return isset($_GET[$key]) ? trim($_GET[$key]) : null;
+        return $this->request->get[$key] ?? null;
+    }
+    
+    // CSRF токен (из request, установлен CsrfMiddleware)
+    protected function getCsrfToken() {
+        if (!$this->request) {
+            return null;
+        }
+        return $this->request->getAttribute('csrf_token');
+    }
+    
+    // Flash сообщения (из request, установлен FlashMiddleware)
+    protected function getFlash() {
+        return $this->request->getAttribute('flash');
+    }
+    
+    protected function setFlash($type, $message) {
+        $flashMiddleware = new FlashMiddleware();
+        $flashMiddleware->setFlash($this->request, $type, $message);
     }
 }
-?>

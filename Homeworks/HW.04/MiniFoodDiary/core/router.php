@@ -11,14 +11,15 @@ class Router {
         $this->routes['POST'][$path] =  ['controller' => $controller, 'method' => $method];
     }
 
-    public function run() {
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    public function run($request) {
+        $httpMethod = $request->method;
+        $path = $request->path;
 
         if (isset($this->routes[$httpMethod][$path]) ) {
             $route = $this->routes[$httpMethod][$path];
             $controller = new $route['controller']();
             $method = $route['method'];
+            $controller->setRequest($request);
             $controller->$method();
         } else {
             http_response_code(404);
