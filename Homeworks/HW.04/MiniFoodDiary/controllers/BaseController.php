@@ -2,6 +2,10 @@
 
 
 abstract class BaseController {
+    protected $request;
+    public function setRequest($request) {
+        $this->request = $request;
+    }
     abstract public function index();
 
     protected function render($view, $data = []) {
@@ -38,27 +42,19 @@ abstract class BaseController {
         return isset($_GET[$key]) ? trim($_GET[$key]) : null;
     }
 
-
-
-
-
-
-
-
-    //ГРЯЗЬ ОТ НЕЙРОНКИ
-
-    // // Для работы с CSRF
-    // protected function getCsrfToken() {
-    //     return $this->request->session['csrf_token'] ?? null;
-    // }
+    // CSRF токен (из request, установлен CsrfMiddleware)
+    protected function getCsrfToken() {
+        return $this->request->getAttribute('csrf_token');
+    }
     
-    // // Для работы с Flash
-    // protected function getFlash() {
-    //     return $this->request->flash ?? null;
-    // }
+    // Flash сообщения (из request, установлен FlashMiddleware)
+    protected function getFlash() {
+        return $this->request->getAttribute('flash');
+    }
     
-    // protected function setFlash($type, $message) {
-    //     $this->request->newFlash = ['type' => $type, 'message' => $message];
-    // }
+    protected function setFlash($type, $message) {
+        $flashMiddleware = new FlashMiddleware();
+        $flashMiddleware->setFlash($this->request, $type, $message);
+    }
 }
 ?>
