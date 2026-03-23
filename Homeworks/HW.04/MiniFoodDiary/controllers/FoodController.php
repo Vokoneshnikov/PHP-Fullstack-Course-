@@ -62,12 +62,16 @@ class FoodController extends BaseController {
         ]);
         
         if (!empty($errors)) {
+            // Генерируем НОВЫЙ токен для повторной отправки
+            $newToken = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token'] = $newToken;
+            
             $this->render('createForm', [
                 'title' => 'Добавить блюдо',
                 'action' => '/food/create',
                 'food' => $data,
                 'errors' => $errors,
-                'csrfToken' => $this->getCsrfToken(),
+                'csrfToken' => $newToken,  // ← новый токен
                 'isEdit' => false
             ]);
             return;

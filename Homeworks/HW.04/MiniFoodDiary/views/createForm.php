@@ -24,17 +24,8 @@
 </head>
 <body>
     <div class="container">
-        <h1><?= $title ?></h1>
-
-
-
-        <!-- В начале формы добавьте для отладки -->
-<div style="background: yellow; padding: 10px; margin-bottom: 10px;">
-    CSRF Token from data: <?= var_dump($csrfToken) ?>
-</div>
-        
+        <h1><?= $title ?></h1>    
         <form method="POST" action="<?= $action ?>">
-            <!-- ✅ ДОБАВЛЕНО ПОЛЕ CSRF ТОКЕНА -->
             <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
             
             <div class="form-group">

@@ -1,6 +1,4 @@
 <?php
-// controllers/BaseController.php
-
 abstract class BaseController {
     protected $request;
     

@@ -15,9 +15,10 @@ require_once 'models/FoodModel.php';
 
 $router = new Router();
 
+// Маршруты
 $router->get('/food', 'FoodController', 'index');
 $router->get('/food/create', 'FoodController', 'showCreateForm');
-$router->get('/food/edit', 'FoodController', 'showEditForm');
+$router->get('/food/update', 'FoodController', 'showEditForm');      // ← для GET формы редактирования
 $router->post('/food/create', 'FoodController', 'create');
 $router->post('/food/update', 'FoodController', 'update');
 
