@@ -8,7 +8,7 @@ class FoodController extends BaseController {
     private $validator;
     
     public function __construct() {
-        $this->model = new FoodModel(__DIR__ . '/../data/foods.json');
+        $this->model = new FoodModel();
         $this->validator = new Validator();
     }
     
@@ -71,7 +71,7 @@ class FoodController extends BaseController {
                 'action' => '/food/create',
                 'food' => $data,
                 'errors' => $errors,
-                'csrfToken' => $newToken,  // ← новый токен
+                'csrfToken' => $newToken, 
                 'isEdit' => false
             ]);
             return;
