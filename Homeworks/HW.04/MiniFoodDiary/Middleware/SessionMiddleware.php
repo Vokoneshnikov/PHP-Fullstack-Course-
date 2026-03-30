@@ -3,10 +3,9 @@ require_once __DIR__ . '/IMiddleware.php';
 class SessionMiddleware implements IMiddleware {
     public function handle($request, $next) {
         $this->startSession();
+
         $request->session = &$_SESSION;
-        
         $response = $next($request);
-        
         return $response;
     }
 
