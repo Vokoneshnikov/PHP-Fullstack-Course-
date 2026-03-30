@@ -31,9 +31,9 @@
                 <div class="food-card">
                     <h2><?= htmlspecialchars($food['title']) ?></h2>
                     <p><?= nl2br(htmlspecialchars($food['description'])) ?></p>
-                    <p class="proteins">🔥 Белков: <?= $food['proteins'] ?> гр.</p>
-                    <p class="fats">🔥 Жиров <?= $food['fats'] ?> гр.</p>
-                    <p class="carbohydrates">🔥 Углеводов: <?= $food['carbohydrates'] ?> гр.</p>
+                    <p class="proteins">Белков: <?= $food['proteins'] ?> гр.</p>
+                    <p class="fats">Жиров <?= $food['fats'] ?> гр.</p>
+                    <p class="carbohydrates">Углеводов: <?= $food['carbohydrates'] ?> гр.</p>
                     <a href="/food/update?id=<?= $food['id'] ?>" class="btn btn-edit">Редактировать</a>
                 </div>
             <?php endforeach; ?>
