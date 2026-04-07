@@ -3,16 +3,14 @@
 class CartController {
     private $request;
     private $cart;
-    private $products = []; // Репозиторий товаров
+    private $products = [];
 
     public function __construct() {
-        // 1. Стартуем сессию (если еще не запущена)
         if (session_status() === PHP_SESSION_NONE) session_start();
         
-        // 2. Инициализируем корзину
         $this->cart = new Cart();
 
-        // 3. Фейковая база товаров
+        // Фейковая база товаров
         $this->products = [
             1 => new Product(1, "Телефон", 500),
             2 => new Product(2, "Лэптоп", 1200)
